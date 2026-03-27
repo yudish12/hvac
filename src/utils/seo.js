@@ -1,12 +1,13 @@
 export const siteConfig = {
-  name: 'Khandelwal Distributors',
+  name: 'Unitech Aircon',
   tagline: 'HVAC Contractor & AC Dealer Bareilly',
   description:
     'Authorized dealer for Daikin, Mitsubishi Heavy, Carrier & more in Bareilly, UP. Expert installation, servicing & commercial HVAC projects. 50,000+ AC installations across Uttar Pradesh.',
-  url: 'https://www.khandelwaldistributors.com',
+  url: 'https://www.unitechaircon.com',
   phone: '+91 9429693410',
   whatsapp: '919429693410',
-  email: 'info@khandelwaldistributors.com',
+  email: 'info@unitechaircon.com',
+  logo: '/logo.webp',
   address: {
     street: 'Civil Lines',
     full: 'G-35, MCI Plaza, Civil Lines',
@@ -16,14 +17,14 @@ export const siteConfig = {
     country: 'India',
   },
   social: {
-    facebook: 'https://facebook.com/khandelwaldistributors',
-    instagram: 'https://instagram.com/khandelwaldistributors',
-    youtube: 'https://youtube.com/@khandelwaldistributors',
-    linkedin: 'https://linkedin.com/company/khandelwal-distributors',
+    facebook: 'https://facebook.com/unitechaircon',
+    instagram: 'https://instagram.com/unitechaircon',
+    youtube: 'https://youtube.com/@unitechaircon',
+    linkedin: 'https://linkedin.com/company/unitech-aircon',
   },
-  maps: 'https://maps.app.goo.gl/khandelwaldistributors',
-  justdial: 'https://www.justdial.com/Bareilly/Khandelwal-Distributors-Civil-Lines/9999PX581-X581-121206195818-R6C6_BZDET',
-  indiamart: 'https://www.indiamart.com/khandelwal-distributors-up',
+  maps: 'https://maps.app.goo.gl/unitechaircon',
+  justdial: '#',
+  indiamart: '#',
 }
 
 export function generateStructuredData() {

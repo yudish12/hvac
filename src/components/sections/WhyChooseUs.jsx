@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
       <Container className="relative z-10">
         <SectionTitle
           subtitle="Why Choose Us"
-          title="Why Customers Trust Khandelwal Distributors"
+          title="Why Customers Trust Unitech Aircon"
           description="With 20+ years of expertise, 50,000+ installations, and official brand partnerships — we deliver unmatched HVAC solutions in Bareilly and across UP."
           light
         />

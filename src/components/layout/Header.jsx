@@ -111,18 +111,12 @@ export default function Header() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <Container className="flex items-center justify-between h-16 lg:h-[72px]">
-          <a href="#" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-9 h-9 bg-gradient-to-br from-primary-600 to-primary-800 rounded-lg flex items-center justify-center shadow-md">
-              <span className="text-white font-extrabold text-base">KD</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-extrabold text-slate-900 leading-tight tracking-tight">
-                Khandelwal
-              </span>
-              <span className="text-[9px] font-semibold text-primary-600 tracking-[0.2em] uppercase leading-none">
-                Distributors
-              </span>
-            </div>
+          <a href="#" className="shrink-0">
+            <img
+              src={siteConfig.logo}
+              alt="Unitech Aircon"
+              className="h-12 w-auto object-contain"
+            />
           </a>
 
           <div className="hidden lg:flex items-center gap-0.5">

@@ -50,17 +50,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-4">
-            <a href="#" className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-extrabold text-base">KD</span>
-              </div>
-              <div>
-                <span className="text-lg font-extrabold text-white block leading-tight">Khandelwal Distributors</span>
-                <span className="text-[9px] font-semibold text-primary-400 tracking-[0.2em] uppercase">HVAC Contractor & AC Dealer</span>
-              </div>
+            <a href="#" className="inline-block mb-5">
+              <img src={siteConfig.logo} alt="Unitech Aircon" className="h-12 w-auto object-contain" />
             </a>
             <p className="text-sm leading-relaxed mb-6 text-slate-400">
-              Authorized dealer for Daikin, Mitsubishi Heavy, Carrier & more. Expert installation, servicing & commercial HVAC projects across Uttar Pradesh since 2004.
+              Authorized dealer for Daikin, Mitsubishi Heavy, Carrier & more. Expert installation, servicing & commercial HVAC projects across Uttar Pradesh.
             </p>
 
             <div className="space-y-3 mb-6">
@@ -162,7 +156,7 @@ export default function Footer() {
       <div className="border-t border-white/5">
         <Container className="py-5 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-xs text-slate-500">
-            &copy; {currentYear} Khandelwal Distributors. All rights reserved. | HVAC Contractor & AC Dealer, Bareilly, UP
+            &copy; {currentYear} Unitech Aircon. All rights reserved. | HVAC Contractor & AC Dealer, Bareilly, UP
           </p>
           <div className="flex items-center gap-5 text-xs text-slate-500">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

@@ -92,7 +92,7 @@ export default function AboutPreview() {
             <motion.span variants={fadeUp} transition={{ duration: 0.5 }}
               className="inline-block text-sm font-semibold tracking-wider uppercase text-primary-600 mb-3"
             >
-              About Khandelwal Distributors
+              About Unitech Aircon
             </motion.span>
 
             <motion.h2 variants={fadeUp} transition={{ duration: 0.5 }}
@@ -104,7 +104,7 @@ export default function AboutPreview() {
             <motion.p variants={fadeUp} transition={{ duration: 0.5 }}
               className="text-slate-500 text-lg leading-relaxed mb-4"
             >
-              Khandelwal Distributors is a leading HVAC contractor and AC dealer based in Civil Lines, Bareilly. We specialize in advanced air conditioning, ventilation, and refrigeration systems for residential, commercial, and industrial clients.
+              Unitech Aircon is a leading HVAC contractor and AC dealer based in Civil Lines, Bareilly. We specialize in advanced air conditioning, ventilation, and refrigeration systems for residential, commercial, and industrial clients.
             </motion.p>
 
             <motion.p variants={fadeUp} transition={{ duration: 0.5 }}
