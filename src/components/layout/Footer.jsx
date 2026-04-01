@@ -1,14 +1,15 @@
+import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, ArrowUpRight, Clock } from 'lucide-react'
 import Container from '../ui/Container'
 import { siteConfig } from '../../utils/seo'
 
 const quickLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Products', href: '#products' },
-  { label: 'Services', href: '#services' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Products', href: '/products' },
+  { label: 'Services', href: '/services' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 const services = [
@@ -50,9 +51,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-4">
-            <a href="#" className="inline-block mb-5">
+            <Link to="/" className="inline-block mb-5">
               <img src={siteConfig.logo} alt="Unitech Aircon" className="h-12 w-auto object-contain" />
-            </a>
+            </Link>
             <p className="text-sm leading-relaxed mb-6 text-slate-400">
               Authorized dealer for Daikin, Mitsubishi Heavy, Carrier & more. Expert installation, servicing & commercial HVAC projects across Uttar Pradesh.
             </p>
@@ -108,12 +109,12 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href}
+                  <Link to={link.href}
                     className="text-sm hover:text-white transition-colors inline-flex items-center gap-1 group"
                   >
                     <span>{link.label}</span>
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -125,7 +126,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {products.map((product) => (
                 <li key={product}>
-                  <a href="#products" className="text-sm hover:text-white transition-colors">{product}</a>
+                  <Link to="/products" className="text-sm hover:text-white transition-colors">{product}</Link>
                 </li>
               ))}
             </ul>
@@ -137,7 +138,7 @@ export default function Footer() {
             <ul className="space-y-2.5 mb-8">
               {services.map((service) => (
                 <li key={service}>
-                  <a href="#services" className="text-sm hover:text-white transition-colors">{service}</a>
+                  <Link to="/services" className="text-sm hover:text-white transition-colors">{service}</Link>
                 </li>
               ))}
             </ul>

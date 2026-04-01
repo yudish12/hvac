@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react'
 import Container from '../ui/Container'
@@ -6,12 +7,12 @@ import Button from '../ui/Button'
 import { siteConfig } from '../../utils/seo'
 
 const navLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'About', href: '#about' },
-  { label: 'Products', href: '#products' },
-  { label: 'Services', href: '#services' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Products', href: '/products' },
+  { label: 'Services', href: '/services' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 const tickerItems = [
@@ -40,9 +41,7 @@ function TickerBar() {
           <span
             key={i}
             className={`mx-6 inline-flex items-center gap-1 ${
-              item.highlight
-                ? 'text-accent-400 font-semibold'
-                : 'text-slate-300'
+              item.highlight ? 'text-accent-400 font-semibold' : 'text-slate-300'
             }`}
           >
             {!item.highlight && <span className="w-1 h-1 rounded-full bg-primary-500 mr-1" />}
@@ -84,6 +83,7 @@ function TopBar() {
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
@@ -111,23 +111,23 @@ export default function Header() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <Container className="flex items-center justify-between h-16 lg:h-[72px]">
-          <a href="#" className="shrink-0">
-            <img
-              src={siteConfig.logo}
-              alt="Unitech Aircon"
-              className="h-12 w-auto object-contain"
-            />
-          </a>
+          <Link to="/" className="shrink-0">
+            <img src={siteConfig.logo} alt="Unitech Aircon" className="h-12 w-auto object-contain" />
+          </Link>
 
           <div className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
-                className="px-3.5 py-2 text-[13px] font-semibold text-slate-600 hover:text-primary-600 rounded-lg hover:bg-primary-50/80 transition-all duration-200 tracking-wide uppercase"
+                to={link.href}
+                className={`px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 tracking-wide uppercase ${
+                  location.pathname === link.href
+                    ? 'text-primary-600 bg-primary-50'
+                    : 'text-slate-600 hover:text-primary-600 hover:bg-primary-50/80'
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -135,7 +135,7 @@ export default function Header() {
             <Button variant="ghost" size="sm" icon={Phone} href={`tel:${siteConfig.phone}`}>
               {siteConfig.phone}
             </Button>
-            <Button size="sm" href="#contact">
+            <Button size="sm" href="/contact">
               Get Free Quote
             </Button>
           </div>
@@ -162,22 +162,25 @@ export default function Header() {
             <Container className="py-6">
               <nav className="flex flex-col gap-1">
                 {navLinks.map((link, i) => (
-                  <motion.a
+                  <Link
                     key={link.label}
-                    href={link.href}
-                    className="flex items-center justify-between px-4 py-3.5 text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-colors"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
+                    to={link.href}
+                    className={`flex items-center justify-between px-4 py-3.5 text-base font-medium rounded-xl transition-colors ${
+                      location.pathname === link.href
+                        ? 'text-primary-600 bg-primary-50'
+                        : 'text-slate-700 hover:text-primary-600 hover:bg-primary-50'
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {link.label}
+                    <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
+                      {link.label}
+                    </motion.span>
                     <ChevronRight className="w-4 h-4 text-slate-300" />
-                  </motion.a>
+                  </Link>
                 ))}
               </nav>
               <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-slate-100">
-                <Button variant="outline" href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="outline" href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                   Get Free Quote
                 </Button>
                 <Button icon={Phone} href={`tel:${siteConfig.phone}`}>
