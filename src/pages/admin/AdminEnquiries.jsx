@@ -1,11 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { supabase } from '../../lib/supabase'
 import { Mail, Phone, Clock, CheckCircle2, Circle, Trash2, MessageSquare } from 'lucide-react'
+import Pagination from '../../components/admin/Pagination'
 
 export default function AdminEnquiries() {
   const [enquiries, setEnquiries] = useState([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
+  const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
 
   useEffect(() => { fetchEnquiries() }, [])
 
@@ -30,13 +33,22 @@ export default function AdminEnquiries() {
     fetchEnquiries()
   }
 
-  const filtered = enquiries.filter((e) => {
-    if (filter === 'unread') return !e.is_read
-    if (filter === 'read') return e.is_read
-    return true
-  })
+  const filtered = useMemo(() => {
+    return enquiries.filter((e) => {
+      if (filter === 'unread') return !e.is_read
+      if (filter === 'read') return e.is_read
+      return true
+    })
+  }, [enquiries, filter])
 
   const unreadCount = enquiries.filter((e) => !e.is_read).length
+
+  useEffect(() => { setPage(1) }, [filter, pageSize])
+
+  const paginated = useMemo(() => {
+    const start = (page - 1) * pageSize
+    return filtered.slice(start, start + pageSize)
+  }, [filtered, page, pageSize])
 
   return (
     <div>
@@ -74,7 +86,7 @@ export default function AdminEnquiries() {
         </div>
       ) : (
         <div className="space-y-3">
-          {filtered.map((enquiry) => (
+          {paginated.map((enquiry) => (
             <div key={enquiry.id}
               className={`bg-white rounded-xl border p-5 transition-all ${
                 enquiry.is_read ? 'border-slate-100' : 'border-primary-200 bg-primary-50/30 shadow-sm'
@@ -117,6 +129,17 @@ export default function AdminEnquiries() {
               </div>
             </div>
           ))}
+
+          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+            <Pagination
+              page={page}
+              pageSize={pageSize}
+              totalItems={filtered.length}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
+              pageSizeOptions={[10, 25, 50, 100]}
+            />
+          </div>
         </div>
       )}
     </div>

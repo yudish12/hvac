@@ -1,61 +1,39 @@
 import { motion } from 'framer-motion'
+import { BadgeCheck, ShieldCheck, Award, Wrench, ArrowRight, Star } from 'lucide-react'
 import Container from '../ui/Container'
 import SectionTitle from '../ui/SectionTitle'
 import { useScrollReveal, fadeUp, staggerContainer } from '../../hooks/useScrollReveal'
 
-const brands = [
+const partnerBenefits = [
   {
-    name: 'Daikin',
-    tagline: 'Premium VRV Systems',
-    logo: 'https://companieslogo.com/img/orig/6367.T_BIG-424af662.png?t=1720244490',
-    color: 'bg-[#009B3A]/5 border-[#009B3A]/10 hover:border-[#009B3A]/30',
+    icon: BadgeCheck,
+    title: 'Authorized Partner',
+    desc: 'Official authorized sales and service partner for Blue Star HVAC systems.',
   },
   {
-    name: 'Mitsubishi Heavy',
-    tagline: 'Heavy Duty Commercial',
-    logo: 'https://companieslogo.com/img/orig/7011.T_BIG-4c3d08c9.png?t=1768276988',
-    color: 'bg-red-50/50 border-red-100 hover:border-red-200',
+    icon: ShieldCheck,
+    title: '100% Genuine Products',
+    desc: 'Every unit, spare, and component supplied comes with full manufacturer warranty.',
   },
   {
-    name: 'Carrier',
-    tagline: 'Reliable Cooling',
-    logo: 'https://companieslogo.com/img/orig/CARR_BIG-5356fab5.png?t=1720244491',
-    color: 'bg-blue-50/50 border-blue-100 hover:border-blue-200',
+    icon: Wrench,
+    title: 'Certified Installation',
+    desc: 'Trained engineers and technicians following Blue Star installation standards.',
   },
   {
-    name: 'Voltas',
-    tagline: "India's No.1 AC",
-    logo: 'https://companieslogo.com/img/orig/VOLTAS.NS_BIG-497c76bb.png?t=1721129223',
-    color: 'bg-orange-50/50 border-orange-100 hover:border-orange-200',
+    icon: Award,
+    title: 'Trusted Indian Brand',
+    desc: "One of India's most trusted names in commercial air-conditioning and cooling.",
   },
-  {
-    name: 'Amstrad',
-    tagline: 'Quality + Value',
-    logo: null,
-    fallback: 'AMSTRAD',
-    fallbackColor: 'text-purple-700',
-    color: 'bg-purple-50/50 border-purple-100 hover:border-purple-200',
-  },
-  {
-    name: 'Midea',
-    tagline: 'Economical & Smart',
-    logo: 'https://companieslogo.com/img/orig/000333.SZ_BIG-c23d6334.png?t=1720244489',
-    color: 'bg-sky-50/50 border-sky-100 hover:border-sky-200',
-  },
-  {
-    name: 'Godrej',
-    tagline: "India's Most Economical",
-    logo: 'https://companieslogo.com/img/orig/GODREJCP.NS-b269802a.png?t=1720244492',
-    color: 'bg-emerald-50/50 border-emerald-100 hover:border-emerald-200',
-  },
-  {
-    name: 'Cruise',
-    tagline: 'Portable & Heavy Duty',
-    logo: null,
-    fallback: 'CRUISE',
-    fallbackColor: 'text-indigo-600',
-    color: 'bg-indigo-50/50 border-indigo-100 hover:border-indigo-200',
-  },
+]
+
+const productLineup = [
+  { label: 'Room Air Conditioners' },
+  { label: 'VRF Systems' },
+  { label: 'Chillers' },
+  { label: 'Ductable & Packaged' },
+  { label: 'Cold Rooms' },
+  { label: 'Water Coolers' },
 ]
 
 export default function BrandsSection() {
@@ -65,61 +43,130 @@ export default function BrandsSection() {
     <section className="py-16 md:py-24 bg-white border-b border-slate-100">
       <Container>
         <SectionTitle
-          subtitle="Authorized Dealer"
-          title="Trusted Partners, Genuine Products"
-          description="We are proud partners with top air conditioning manufacturers, offering genuine products with full warranty coverage."
+          subtitle="Authorized Partner"
+          title="Proud Partners of Blue Star"
+          description="We are an authorized partner of Blue Star — delivering genuine products, certified installation, and reliable after-sales service backed by one of India's most trusted HVAC brands."
         />
 
         <motion.div
           ref={ref}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+          className="grid lg:grid-cols-12 gap-8 items-stretch"
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
         >
-          {brands.map((brand) => (
+          {/* Brand Showcase Card */}
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5"
+          >
+            <div className="relative h-full rounded-3xl bg-gradient-to-br from-[#0057A8] via-[#003F7D] to-[#001F4D] p-8 md:p-10 overflow-hidden shadow-elevated">
+              {/* Decorative glows */}
+              <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
+              <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-white/5 blur-3xl" />
+
+              {/* Subtle grid pattern */}
+              <div
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)',
+                  backgroundSize: '36px 36px',
+                }}
+              />
+
+              <div className="relative flex flex-col h-full">
+                <div className="inline-flex self-start items-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-3 py-1 text-xs font-semibold text-white uppercase tracking-wider mb-6">
+                  <BadgeCheck className="w-3.5 h-3.5" />
+                  Authorized Partner
+                </div>
+
+                {/* Logo plate */}
+                <div className="bg-white rounded-2xl px-8 py-10 flex items-center justify-center mb-6 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.4)]">
+                  <img
+                    src="/bluestar-logo.png"
+                    alt="Blue Star — official logo"
+                    className="max-h-16 md:max-h-20 w-auto object-contain"
+                    loading="lazy"
+                  />
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-tight">
+                  Blue Star Limited
+                </h3>
+                <p className="text-blue-100/90 leading-relaxed text-sm md:text-base mb-6">
+                  India's leading air-conditioning and commercial refrigeration company — known for
+                  engineering excellence, energy efficiency, and dependable performance across
+                  residential, commercial, and industrial applications.
+                </p>
+
+                {/* Credibility chips */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-3 py-1 text-xs font-medium text-white">
+                    <Star className="w-3 h-3 text-yellow-300 fill-yellow-300" />
+                    75+ Years in HVAC
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-3 py-1 text-xs font-medium text-white">
+                    Made in India
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-3 py-1 text-xs font-medium text-white">
+                    ISO Certified
+                  </span>
+                </div>
+
+                <a
+                  href="/contact"
+                  className="mt-auto inline-flex self-start items-center gap-2 bg-white text-[#003F7D] font-semibold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors"
+                >
+                  Get a Blue Star Quote
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Partnership Benefits + Product lineup */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {partnerBenefits.map((b) => (
+                <motion.div
+                  key={b.title}
+                  variants={fadeUp}
+                  transition={{ duration: 0.5 }}
+                  whileHover={{ y: -3 }}
+                  className="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-primary-100 hover:shadow-card transition-all"
+                >
+                  <div className="w-11 h-11 bg-primary-50 rounded-xl flex items-center justify-center mb-4">
+                    <b.icon className="w-5 h-5 text-primary-600" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 mb-1.5">{b.title}</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">{b.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
             <motion.div
-              key={brand.name}
               variants={fadeUp}
               transition={{ duration: 0.5 }}
+              className="bg-gradient-to-r from-primary-50 via-white to-secondary-50 border border-slate-100 rounded-2xl p-6"
             >
-              <motion.div
-                className={`rounded-xl border p-5 md:p-6 text-center transition-all duration-300 cursor-pointer ${brand.color} hover:shadow-card`}
-                whileHover={{ y: -3 }}
-              >
-                <div className="h-12 mx-auto mb-3 flex items-center justify-center px-2">
-                  {brand.logo ? (
-                    <img
-                      src={brand.logo}
-                      alt={`${brand.name} logo`}
-                      className="max-h-full max-w-full object-contain"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span className={`text-lg font-extrabold tracking-tight ${brand.fallbackColor}`}>
-                      {brand.fallback}
-                    </span>
-                  )}
-                </div>
-                <h4 className="font-bold text-slate-900 text-sm">{brand.name}</h4>
-                <p className="text-[11px] text-slate-400 mt-0.5">{brand.tagline}</p>
-              </motion.div>
+              <p className="text-xs font-semibold tracking-wider uppercase text-primary-600 mb-3">
+                Blue Star Product Lineup We Supply & Service
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {productLineup.map((p) => (
+                  <span
+                    key={p.label}
+                    className="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-full px-3 py-1.5 text-sm font-medium text-slate-700"
+                  >
+                    <BadgeCheck className="w-3.5 h-3.5 text-primary-600" />
+                    {p.label}
+                  </span>
+                ))}
+              </div>
             </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="mt-10 flex flex-wrap justify-center gap-4"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
-        >
-          <a href="#contact" className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors">
-            Get Brand-Specific Quote →
-          </a>
-          <a href="#products" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors">
-            View All Products →
-          </a>
+          </div>
         </motion.div>
       </Container>
     </section>
