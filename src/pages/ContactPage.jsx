@@ -192,11 +192,27 @@ export default function ContactPage() {
       {/* Map */}
       <section className="bg-slate-100">
         <iframe
-          title="Unitech Aircon Location"
-          src={`https://www.google.com/maps?q=${encodeURIComponent(`${siteConfig.address.full}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`)}&output=embed`}
-          width="100%" height="400" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-          className="w-full"
+          title={`${siteConfig.name} Location`}
+          src={`https://maps.google.com/maps?q=${siteConfig.address.lat},${siteConfig.address.lng}(${encodeURIComponent(siteConfig.name)})&ll=${siteConfig.address.lat},${siteConfig.address.lng}&z=17&t=&ie=UTF8&iwloc=&output=embed`}
+          width="100%"
+          height="450"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="w-full block"
         />
+        <div className="py-3 text-center bg-white border-t border-slate-100">
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${siteConfig.address.lat},${siteConfig.address.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors"
+          >
+            <MapPin className="w-4 h-4" />
+            Get Directions to Our Office
+          </a>
+        </div>
       </section>
     </>
   )

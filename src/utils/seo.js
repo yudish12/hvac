@@ -16,6 +16,8 @@ export const siteConfig = {
     state: 'Uttar Pradesh',
     zip: '226002',
     country: 'India',
+    lat: 26.7866467,
+    lng: 80.9902149,
   },
   social: {
     facebook: 'https://facebook.com/unitechaircon',
@@ -23,7 +25,7 @@ export const siteConfig = {
     youtube: 'https://youtube.com/@unitechaircon',
     linkedin: 'https://linkedin.com/company/unitech-aircon',
   },
-  maps: 'https://maps.app.goo.gl/unitechaircon',
+  maps: 'https://www.google.com/maps/place/Unitech+Aircon/@26.7866467,80.9902149,17z/data=!4m6!3m5!1s0x399be5553afc64a3:0x7155018ee0792bb0!8m2!3d26.7866467!4d80.9902149',
   justdial: '#',
   indiamart: '#',
 }
@@ -49,8 +51,8 @@ export function generateStructuredData() {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 26.8467,
-      longitude: 80.9462,
+      latitude: siteConfig.address.lat,
+      longitude: siteConfig.address.lng,
     },
     openingHoursSpecification: [
       {
