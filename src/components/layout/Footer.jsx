@@ -13,26 +13,26 @@ const quickLinks = [
 ]
 
 const services = [
-  'AC Installation',
-  'HVAC System Design',
+  'HVAC Turnkey Projects',
+  'VRF System Installation',
+  'Central AC & Chiller Systems',
+  'Package & Ductable Systems',
   'Annual Maintenance (AMC)',
-  'Repair & Emergency',
-  'VRV/VRF Systems',
-  'Cold Room Solutions',
+  'Institutional HVAC Maintenance',
 ]
 
 const products = [
-  'Inverter Split AC',
-  'Cassette AC Systems',
-  'Ductable AC Systems',
-  'VRV / VRF Systems',
-  'Chiller Systems',
-  'Heat Pumps',
-  'Cold Rooms',
-  'Floor Standing AC',
+  'VRF V Plus 100% Inverter',
+  'VRF V S – Side Discharge',
+  'VRF Lite 100% Inverter',
+  'Packaged & Ducted Split AC',
+  'Inverter Ducted Hot & Cold',
+  'Concealed Split AC',
+  'Scroll, Screw & Centrifugal Chillers',
+  'Condensing Units',
 ]
 
-const brands = ['Daikin', 'Mitsubishi Heavy', 'Carrier', 'Voltas', 'Amstrad', 'Midea', 'Godrej', 'Cruise']
+const brands = ['Blue Star']
 
 const socials = [
   { label: 'Facebook', href: siteConfig.social.facebook, path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' },
@@ -55,7 +55,7 @@ export default function Footer() {
               <img src={siteConfig.logo} alt="Unitech Aircon" className="h-12 w-auto object-contain" />
             </Link>
             <p className="text-sm leading-relaxed mb-6 text-slate-400">
-              Authorized dealer for Daikin, Mitsubishi Heavy, Carrier & more. Expert installation, servicing & commercial HVAC projects across Uttar Pradesh.
+              Authorized Blue Star partner delivering HVAC engineering, installation, servicing, and AMC solutions across Lucknow, Ayodhya, Gorakhpur, and Varanasi.
             </p>
 
             <div className="space-y-3 mb-6">
@@ -157,7 +157,7 @@ export default function Footer() {
       <div className="border-t border-white/5">
         <Container className="py-5 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-xs text-slate-500">
-            &copy; {currentYear} Unitech Aircon. All rights reserved. | HVAC Contractor & AC Dealer, Bareilly, UP
+            &copy; {currentYear} Unitech Aircon. All rights reserved. | HVAC Engineering & Service Company, {siteConfig.address.city}, UP
           </p>
           <div className="flex items-center gap-5 text-xs text-slate-500">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

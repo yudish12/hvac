@@ -18,7 +18,7 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: 'Authorized Dealer',
-    description: 'Official partnerships with Daikin, Mitsubishi Heavy, Carrier & 5+ brands ensure genuine products and valid warranties.',
+    description: 'Authorized Blue Star partner — ensuring 100% genuine products, factory-backed warranty, and certified installation.',
   },
   {
     icon: Puzzle,
@@ -66,7 +66,7 @@ export default function WhyChooseUs() {
         <SectionTitle
           subtitle="Why Choose Us"
           title="Why Customers Trust Unitech Aircon"
-          description="With 20+ years of expertise, 50,000+ installations, and official brand partnerships — we deliver unmatched HVAC solutions in Bareilly and across UP."
+          description="With 20+ years of expertise, a proven project track record, and an authorized Blue Star partnership — we deliver unmatched HVAC solutions across Lucknow, Ayodhya, Gorakhpur, and Varanasi."
           light
         />
 

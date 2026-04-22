@@ -63,9 +63,9 @@ export default function ContactPage() {
   return (
     <>
       <Helmet>
-        <title>Contact Unitech Aircon – Free Consultation & Site Visit | Bareilly, UP</title>
-        <meta name="description" content="Get in touch with Unitech Aircon for free HVAC consultation, quotes, and site visits. Call +91 9429693410 or visit us at Civil Lines, Bareilly." />
-        <meta property="og:title" content="Contact Unitech Aircon – HVAC Experts Bareilly" />
+        <title>Contact Unitech Aircon – Free Consultation & Site Visit | Lucknow, UP</title>
+        <meta name="description" content={`Get in touch with Unitech Aircon for free HVAC consultation, quotes, and site visits. Call ${siteConfig.phone} or visit us at ${siteConfig.address.short}.`} />
+        <meta property="og:title" content="Contact Unitech Aircon – HVAC Experts Lucknow" />
         <link rel="canonical" href={`${siteConfig.url}/contact`} />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
@@ -193,7 +193,7 @@ export default function ContactPage() {
       <section className="bg-slate-100">
         <iframe
           title="Unitech Aircon Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.977!2d79.432!3d28.367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCivil+Lines+Bareilly!5e0!3m2!1sen!2sin!4v1"
+          src={`https://www.google.com/maps?q=${encodeURIComponent(`${siteConfig.address.full}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`)}&output=embed`}
           width="100%" height="400" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
           className="w-full"
         />

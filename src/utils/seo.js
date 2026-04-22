@@ -1,19 +1,20 @@
 export const siteConfig = {
   name: 'Unitech Aircon',
-  tagline: 'HVAC Contractor & AC Dealer Bareilly',
+  tagline: 'HVAC Engineering & Service Company – Lucknow',
   description:
-    'Authorized dealer for Daikin, Mitsubishi Heavy, Carrier & more in Bareilly, UP. Expert installation, servicing & commercial HVAC projects. 50,000+ AC installations across Uttar Pradesh.',
+    'Professionally managed HVAC engineering and service company in Lucknow with 20+ years of experience. Authorized Blue Star partner delivering VRF, ducted, chiller, and AMC solutions across Lucknow, Ayodhya, Gorakhpur & Varanasi.',
   url: 'https://www.unitechaircon.com',
   phone: '+91 9429693410',
   whatsapp: '919429693410',
   email: 'info@unitechaircon.com',
   logo: '/logo.webp',
   address: {
-    street: 'Civil Lines',
-    full: 'G-35, MCI Plaza, Civil Lines',
-    city: 'Bareilly',
+    street: 'Hanumant Vihar, Hasiamau',
+    full: 'House No. 05, Kh No. 550, Hanumant Vihar, Hasiamau',
+    short: 'Hanumant Vihar, Hasiamau, Lucknow',
+    city: 'Lucknow',
     state: 'Uttar Pradesh',
-    zip: '243001',
+    zip: '226002',
     country: 'India',
   },
   social: {
@@ -48,8 +49,8 @@ export function generateStructuredData() {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 28.367,
-      longitude: 79.432,
+      latitude: 26.8467,
+      longitude: 80.9462,
     },
     openingHoursSpecification: [
       {
@@ -75,12 +76,7 @@ export function generateStructuredData() {
       name: 'Uttar Pradesh',
     },
     brand: [
-      { '@type': 'Brand', name: 'Daikin' },
-      { '@type': 'Brand', name: 'Mitsubishi Heavy' },
-      { '@type': 'Brand', name: 'Carrier' },
-      { '@type': 'Brand', name: 'Voltas' },
-      { '@type': 'Brand', name: 'Godrej' },
-      { '@type': 'Brand', name: 'Midea' },
+      { '@type': 'Brand', name: 'Blue Star' },
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

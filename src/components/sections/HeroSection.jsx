@@ -40,7 +40,7 @@ export default function HeroSection() {
                 <span className="text-accent-400 font-bold">4.8</span>
               </span>
               <span className="w-px h-4 bg-white/20" />
-              <span>Rated by 250+ Customers in Bareilly</span>
+              <span>Trusted by 250+ Clients across Lucknow, Ayodhya, Gorakhpur & Varanasi</span>
             </motion.div>
 
             {/* Heading */}
@@ -61,7 +61,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Authorized dealer for <strong className="text-white">Daikin, Mitsubishi Heavy, Carrier</strong> & more. Expert installation, servicing & commercial HVAC projects across Uttar Pradesh.
+              Authorized partner of <strong className="text-white">Blue Star</strong>. Expert HVAC installation, servicing & turnkey commercial projects across Lucknow, Ayodhya, Gorakhpur & Varanasi.
             </motion.p>
 
             {/* CTAs */}

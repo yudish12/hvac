@@ -59,8 +59,8 @@ export default function ServicesPage() {
   return (
     <>
       <Helmet>
-        <title>HVAC Services – Installation, AMC, Repair | Unitech Aircon Bareilly</title>
-        <meta name="description" content="Professional AC installation, annual maintenance contracts, repair services & 24/7 emergency support. Certified HVAC technicians in Bareilly, UP." />
+        <title>HVAC Services – Installation, AMC, Repair | Unitech Aircon Lucknow</title>
+        <meta name="description" content="Professional HVAC installation, annual maintenance contracts, repair services & 24/7 emergency support. Certified Blue Star partner serving Lucknow, Ayodhya, Gorakhpur, and Varanasi." />
         <meta property="og:title" content="HVAC Services – Unitech Aircon" />
         <meta property="og:description" content="Complete HVAC services from installation to maintenance. Free site visits, AMC plans, and 24/7 emergency support." />
         <link rel="canonical" href={`${siteConfig.url}/services`} />

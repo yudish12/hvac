@@ -16,21 +16,19 @@ const navLinks = [
 ]
 
 const tickerItems = [
-  { text: '🔥 End of Season Sale - Up to 40% OFF', highlight: true },
-  { text: 'Inverter Split AC' },
-  { text: 'Daikin' },
-  { text: 'VRV Systems' },
-  { text: 'Carrier' },
-  { text: '💰 Special Offers on Rental ACs', highlight: true },
-  { text: 'Ductable AC' },
-  { text: 'Mitsubishi Heavy' },
-  { text: 'Cassette AC' },
-  { text: 'Voltas' },
-  { text: 'Window AC' },
-  { text: 'Godrej' },
-  { text: '🎉 Best Prices on Installation', highlight: true },
-  { text: 'Floor Standing AC' },
-  { text: 'Midea' },
+  { text: '✦ Authorized Blue Star Partner', highlight: true },
+  { text: 'VRF V Plus 100% Inverter' },
+  { text: 'Blue Star' },
+  { text: 'Ducted Split Systems' },
+  { text: 'Scroll & Screw Chillers' },
+  { text: '✦ 20+ Years of HVAC Excellence', highlight: true },
+  { text: 'Centrifugal Chillers' },
+  { text: 'Condensing Units' },
+  { text: 'Annual Maintenance Contracts' },
+  { text: 'Turnkey HVAC Projects' },
+  { text: '✦ Serving Lucknow · Ayodhya · Gorakhpur · Varanasi', highlight: true },
+  { text: 'Concealed Split AC' },
+  { text: 'Data Centre Chillers' },
 ]
 
 function TickerBar() {
@@ -68,7 +66,7 @@ function TopBar() {
           </a>
           <span className="flex items-center gap-2 text-primary-300">
             <MapPin className="w-3.5 h-3.5" />
-            <span>Civil Lines, Bareilly, UP</span>
+            <span>{siteConfig.address.short}, UP</span>
           </span>
         </div>
         <div className="flex items-center gap-4 text-primary-300">

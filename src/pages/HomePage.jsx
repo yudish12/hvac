@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>{siteConfig.name} – {siteConfig.tagline} | Daikin, Mitsubishi, Carrier</title>
+        <title>{siteConfig.name} – {siteConfig.tagline} | Authorized Blue Star Partner</title>
         <meta name="description" content={siteConfig.description} />
         <meta property="og:title" content={`${siteConfig.name} – ${siteConfig.tagline}`} />
         <meta property="og:description" content={siteConfig.description} />
