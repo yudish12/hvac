@@ -5,7 +5,15 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-export function getPublicImageUrl(path) {
-  const { data } = supabase.storage.from('product-images').getPublicUrl(path)
+export function getPublicStorageUrl(bucket, path) {
+  const { data } = supabase.storage.from(bucket).getPublicUrl(path)
   return data.publicUrl
+}
+
+export function getPublicImageUrl(path) {
+  return getPublicStorageUrl('product-images', path)
+}
+
+export function getPublicBrochureUrl(path) {
+  return getPublicStorageUrl('product-brochures', path)
 }

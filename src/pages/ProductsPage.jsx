@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import { useState, useEffect, useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import {
   ArrowRight, Phone, CheckCircle2, Layers, Search, Image as ImageIcon,
 } from 'lucide-react'
@@ -17,7 +18,7 @@ import {
 
 function ProductCard({ product, index = 0 }) {
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -73,16 +74,16 @@ function ProductCard({ product, index = 0 }) {
             <span className="text-[11px] text-slate-400 font-medium">
               {product.capacity || product.brand || 'Blue Star'}
             </span>
-            <a
-              href="/contact"
+            <Link
+              to={`/products/${product.id}`}
               className="inline-flex items-center gap-1 text-xs font-semibold text-primary-600 group-hover:gap-2 transition-all"
             >
-              Enquire <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+              View Details <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </article>
-    </motion.div>
+    </Motion.div>
   )
 }
 

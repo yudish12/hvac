@@ -33,6 +33,7 @@ create table public.products (
   capacity      text,
   features      text[]      not null    default '{}',
   image_url     text,
+  brochure_url  text,
   sort_order    int         not null    default 0,
   is_active     boolean     not null    default true
 );
@@ -118,10 +119,14 @@ create policy "Enquiries deletable by authenticated users"
   on public.enquiries for delete to authenticated using (true);
 
 -- ------------------------------------------------------------
--- 6. Storage bucket + policies for product images
+-- 6. Storage buckets + policies (images + brochures)
 -- ------------------------------------------------------------
 insert into storage.buckets (id, name, public)
 values ('product-images', 'product-images', true)
+on conflict (id) do nothing;
+
+insert into storage.buckets (id, name, public)
+values ('product-brochures', 'product-brochures', true)
 on conflict (id) do nothing;
 
 drop policy if exists "Product images are publicly readable"       on storage.objects;
@@ -140,6 +145,23 @@ create policy "Authenticated users can update product images"
 
 create policy "Authenticated users can delete product images"
   on storage.objects for delete to authenticated using (bucket_id = 'product-images');
+
+drop policy if exists "Product brochures are publicly readable"       on storage.objects;
+drop policy if exists "Authenticated users can upload product brochures" on storage.objects;
+drop policy if exists "Authenticated users can update product brochures" on storage.objects;
+drop policy if exists "Authenticated users can delete product brochures" on storage.objects;
+
+create policy "Product brochures are publicly readable"
+  on storage.objects for select using (bucket_id = 'product-brochures');
+
+create policy "Authenticated users can upload product brochures"
+  on storage.objects for insert to authenticated with check (bucket_id = 'product-brochures');
+
+create policy "Authenticated users can update product brochures"
+  on storage.objects for update to authenticated using (bucket_id = 'product-brochures');
+
+create policy "Authenticated users can delete product brochures"
+  on storage.objects for delete to authenticated using (bucket_id = 'product-brochures');
 
 -- ------------------------------------------------------------
 -- 7. SEED DATA — Blue Star product lineup
