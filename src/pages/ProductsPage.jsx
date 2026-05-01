@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { motion as Motion } from 'framer-motion'
 import { useState, useEffect, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import {
   ArrowRight, Phone, CheckCircle2, Layers, Search, Image as ImageIcon,
 } from 'lucide-react'
@@ -38,7 +38,7 @@ function ProductCard({ product, index = 0 }) {
               <ImageIcon className="w-10 h-10 text-slate-300" />
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-900/70 via-transparent to-transparent" />
           {product.price && (
             <span className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-slate-900 text-xs font-bold px-3 py-1 rounded-full">
               {product.price}
@@ -114,8 +114,13 @@ function CategorySection({ category, products, bgClass }) {
 export default function ProductsPage() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const [activeCategory, setActiveCategory] = useState('all')
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const activeCategoryParam = searchParams.get('category')
+  const activeCategory = productCategories.some((c) => c.slug === activeCategoryParam)
+    ? activeCategoryParam
+    : 'all'
+  const searchQuery = searchParams.get('q') || ''
 
   useEffect(() => {
     supabase
@@ -130,6 +135,27 @@ export default function ProductsPage() {
         setLoading(false)
       })
   }, [])
+
+  const handleCategoryChange = (category) => {
+    const nextParams = new URLSearchParams(searchParams)
+    if (category === 'all') {
+      nextParams.delete('category')
+    } else {
+      nextParams.set('category', category)
+    }
+    setSearchParams(nextParams, { replace: true })
+  }
+
+  const handleSearchChange = (value) => {
+    const nextParams = new URLSearchParams(searchParams)
+    const trimmed = value.trim()
+    if (trimmed) {
+      nextParams.set('q', trimmed)
+    } else {
+      nextParams.delete('q')
+    }
+    setSearchParams(nextParams, { replace: true })
+  }
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
@@ -179,7 +205,7 @@ export default function ProductsPage() {
           <div className="flex flex-col lg:flex-row lg:items-center gap-4">
             <div className="flex gap-2 flex-wrap flex-1">
               <button
-                onClick={() => setActiveCategory('all')}
+                onClick={() => handleCategoryChange('all')}
                 className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-colors ${
                   activeCategory === 'all'
                     ? 'bg-primary-600 text-white'
@@ -192,7 +218,7 @@ export default function ProductsPage() {
               {productCategories.map((c) => (
                 <button
                   key={c.slug}
-                  onClick={() => setActiveCategory(c.slug)}
+                  onClick={() => handleCategoryChange(c.slug)}
                   className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors ${
                     activeCategory === c.slug
                       ? 'bg-primary-600 text-white'
@@ -210,7 +236,7 @@ export default function ProductsPage() {
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 rounded-full border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
               />
             </div>

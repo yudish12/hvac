@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Phone, Mail, MapPin, Clock, ChevronRight } from 'lucide-react'
+import { motion as Motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, Phone, Mail, MapPin, Clock, ChevronRight, ChevronDown } from 'lucide-react'
 import Container from '../ui/Container'
 import Button from '../ui/Button'
 import { siteConfig } from '../../utils/seo'
+import { productCategories } from '../../constants/productCategories'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -81,6 +82,8 @@ function TopBar() {
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false)
+  const [isProductsMenuOpen, setIsProductsMenuOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -94,11 +97,24 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [isMobileMenuOpen])
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+    setIsMobileProductsOpen(false)
+  }
+
+  const toggleMobileMenu = () => {
+    if (isMobileMenuOpen) {
+      closeMobileMenu()
+      return
+    }
+    setIsMobileMenuOpen(true)
+  }
+
   return (
     <header className="sticky top-0 z-50">
       <TickerBar />
       <TopBar />
-      <motion.nav
+      <Motion.nav
         className={`transition-all duration-300 ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-soft'
@@ -115,17 +131,64 @@ export default function Header() {
 
           <div className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className={`px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 tracking-wide uppercase ${
-                  location.pathname === link.href
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-slate-600 hover:text-primary-600 hover:bg-primary-50/80'
-                }`}
-              >
-                {link.label}
-              </Link>
+              link.href === '/products' ? (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setIsProductsMenuOpen(true)}
+                  onMouseLeave={() => setIsProductsMenuOpen(false)}
+                >
+                  <Link
+                    to={link.href}
+                    className={`px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 tracking-wide uppercase inline-flex items-center gap-1 ${
+                      location.pathname === link.href
+                        ? 'text-primary-600 bg-primary-50'
+                        : 'text-slate-600 hover:text-primary-600 hover:bg-primary-50/80'
+                    }`}
+                  >
+                    {link.label}
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  </Link>
+
+                  <AnimatePresence>
+                    {isProductsMenuOpen && (
+                      <Motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.18 }}
+                        className="absolute left-0 top-full mt-1.5 w-72 rounded-xl border border-slate-200 bg-white shadow-elevated overflow-hidden"
+                      >
+                        <div className="py-1.5">
+                          {productCategories.map((category) => (
+                            <Link
+                              key={category.slug}
+                              to={`/products?category=${category.slug}`}
+                              className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                              onClick={() => setIsProductsMenuOpen(false)}
+                            >
+                              <span>{category.label}</span>
+                              <ChevronRight className="w-4 h-4 text-slate-300" />
+                            </Link>
+                          ))}
+                        </div>
+                      </Motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className={`px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 tracking-wide uppercase ${
+                    location.pathname === link.href
+                      ? 'text-primary-600 bg-primary-50'
+                      : 'text-slate-600 hover:text-primary-600 hover:bg-primary-50/80'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
 
@@ -140,17 +203,17 @@ export default function Header() {
 
           <button
             className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </Container>
-      </motion.nav>
+      </Motion.nav>
 
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <Motion.div
             className="fixed inset-0 top-[106px] z-40 bg-white lg:hidden overflow-y-auto"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -160,28 +223,96 @@ export default function Header() {
             <Container className="py-6">
               <nav className="flex flex-col gap-1">
                 {navLinks.map((link, i) => (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    className={`flex items-center justify-between px-4 py-3.5 text-base font-medium rounded-xl transition-colors ${
-                      location.pathname === link.href
-                        ? 'text-primary-600 bg-primary-50'
-                        : 'text-slate-700 hover:text-primary-600 hover:bg-primary-50'
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
-                      {link.label}
-                    </motion.span>
-                    <ChevronRight className="w-4 h-4 text-slate-300" />
-                  </Link>
+                  link.href === '/products' ? (
+                    <div
+                      key={link.label}
+                      className="rounded-xl border border-slate-200/90 bg-slate-50/70 overflow-hidden"
+                    >
+                      <button
+                        type="button"
+                        className={`w-full flex items-center justify-between px-4 py-3.5 text-base font-medium transition-colors ${
+                          location.pathname === link.href
+                            ? 'text-primary-600 bg-primary-50'
+                            : 'text-slate-700 hover:text-primary-600'
+                        }`}
+                        onClick={() => setIsMobileProductsOpen((prev) => !prev)}
+                        aria-expanded={isMobileProductsOpen}
+                        aria-label="Toggle products categories"
+                      >
+                        <Motion.span
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.05 }}
+                        >
+                          {link.label}
+                        </Motion.span>
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            isMobileProductsOpen ? 'rotate-180 text-primary-600' : 'text-slate-400'
+                          }`}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {isMobileProductsOpen && (
+                          <Motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="border-t border-slate-200 bg-white"
+                          >
+                            <div className="p-3">
+                              <Link
+                                to="/products"
+                                className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:text-primary-700 hover:bg-primary-50 transition-colors"
+                                onClick={closeMobileMenu}
+                              >
+                                <span>All Products</span>
+                                <ChevronRight className="w-4 h-4 text-slate-300" />
+                              </Link>
+                              <div className="mt-2 grid gap-1">
+                                {productCategories.map((category) => (
+                                  <Link
+                                    key={category.slug}
+                                    to={`/products?category=${category.slug}`}
+                                    className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:text-primary-700 hover:bg-primary-50 transition-colors"
+                                    onClick={closeMobileMenu}
+                                  >
+                                    <span>{category.label}</span>
+                                    <ChevronRight className="w-4 h-4 text-slate-300" />
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          </Motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.label}
+                      to={link.href}
+                      className={`flex items-center justify-between px-4 py-3.5 text-base font-medium rounded-xl transition-colors ${
+                        location.pathname === link.href
+                          ? 'text-primary-600 bg-primary-50'
+                          : 'text-slate-700 hover:text-primary-600 hover:bg-primary-50'
+                      }`}
+                      onClick={closeMobileMenu}
+                    >
+                      <Motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
+                        {link.label}
+                      </Motion.span>
+                      <ChevronRight className="w-4 h-4 text-slate-300" />
+                    </Link>
+                  )
                 ))}
               </nav>
               <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-slate-100">
-                <Button variant="outline" href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="outline" href="/contact" onClick={closeMobileMenu}>
                   Get Free Quote
                 </Button>
-                <Button icon={Phone} href={`tel:${siteConfig.phone}`}>
+                <Button icon={Phone} href={`tel:${siteConfig.phone}`} onClick={closeMobileMenu}>
                   Call Now
                 </Button>
               </div>
@@ -197,7 +328,7 @@ export default function Header() {
                 </p>
               </div>
             </Container>
-          </motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
     </header>
